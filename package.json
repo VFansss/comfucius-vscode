@@ -26,12 +26,6 @@
 		"configuration": {
 			"title": "Comfucius",
 			"properties": {
-				"comfucius.cacheTtl": {
-					"type": "number",
-					"scope": "application",
-					"default": 10920,
-					"description": "Time (in seconds) before retrieving another quote from Comfucius API"
-				},
 				"comfucius.timeDelay": {
 					"type": "number",
 					"scope": "application",

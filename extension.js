@@ -7,6 +7,7 @@ var hideStatusBar;
 
 // Used to retain a cache instead of calling the web API often
 var cachedData;
+var cacheTtl = 10920; // Expressed in ms. 10920 ~ slightly more than 3hrs
 
 // Strings used for status bar
 
@@ -56,7 +57,7 @@ function refreshPhrase(){
 			cachedData = dataFromApi;
 
 			// ...but also dischange it after a certain amount of time
-			setTimeout(()=>{ cachedData = null }, vscode.workspace.getConfiguration().get('comfucius.cacheTtl') * 1000);
+			setTimeout(()=>{ cachedData = null }, cacheTtl * 1000);
 			
 			showPharse(cachedData);	
 
