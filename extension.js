@@ -49,29 +49,28 @@ function RefreshPhrase(){
 
 async function ShowPharse(data){
 	if (data != null){
-		phrase = data.Phrase;
-		thinker = data.Thinker;
+
+		// Build the fake quote from the input data
+
+		let fakeQuote = `${data.Phrase} ~ ${data.Thinker}`;
+
 		if (hideStatusBar)
 			myStatusBarItem.text = BAR_COLLAPSED;
 		else
-			myStatusBarItem.text = `$(megaphone) ${phrase}`;
-		var textLength = phrase.length;
+			myStatusBarItem.text = `$(megaphone) ${fakeQuote}`;
+
+		var textLength = fakeQuote.length;
 		await new Promise(r => setTimeout(r, vscode.workspace.getConfiguration().get('phrase.startScrollDelay') * 1000));
 		while (textLength > 0){
 			textLength--;
-			phrase = phrase.substring(1);
+			fakeQuote = fakeQuote.substring(1);
 			if (hideStatusBar)
 				myStatusBarItem.text = BAR_COLLAPSED;
 			else
-				myStatusBarItem.text = `$(megaphone) ${phrase}`;
+				myStatusBarItem.text = `$(megaphone) ${fakeQuote}`;
 			await new Promise(r => setTimeout(r, vscode.workspace.getConfiguration().get('phrase.scrollPerCharacter') * 1000));
 		}
-		
-		await new Promise(r => setTimeout(r, 1500));
-		if (hideStatusBar)
-			myStatusBarItem.text = BAR_COLLAPSED;
-		else
-			myStatusBarItem.text = `$(megaphone) ~ by ${thinker}`;
+
 	}
 	else{
 		if (hideStatusBar)
