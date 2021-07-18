@@ -4,9 +4,6 @@ const fetch = require("node-fetch");
 
 var myStatusBarItem;
 var hideStatusBar;
-var stopRefresh;
-var phrase;
-var thinker;
 
 // Used to retain a cache instead of calling the web API often
 var cachedData;
@@ -35,17 +32,17 @@ function activate(context) {
 
 	context.subscriptions.push(myStatusBarItem);
 	myStatusBarItem.show();
-	RefreshPhrase();
+	refreshPhrase();
 }
 
 function deactivate() {}
 
-function RefreshPhrase(){
+function refreshPhrase(){
 
 	if(cachedData){
 
 		// Pass cloned object to avoid cache clearing while parsing the phrase
-		ShowPharse({...cachedData});
+		showPharse({...cachedData});
 
 	}
 	else{
@@ -61,7 +58,7 @@ function RefreshPhrase(){
 			// ...but also dischange it after a certain amount of time
 			setTimeout(()=>{ cachedData = null }, vscode.workspace.getConfiguration().get('phrase.cacheTtl') * 1000);
 			
-			ShowPharse(cachedData);	
+			showPharse(cachedData);	
 
 		});
 	
@@ -69,7 +66,7 @@ function RefreshPhrase(){
 
 }
 
-async function ShowPharse(data){
+async function showPharse(data){
 	
 	if (data != null){
 
@@ -102,7 +99,7 @@ async function ShowPharse(data){
 			myStatusBarItem.text = BAR_ERROR;
 		await new Promise(r => setTimeout(r, 10000));
 	}	
-	setTimeout(RefreshPhrase, vscode.workspace.getConfiguration().get('phrase.timeDelay') * 1000);
+	setTimeout(refreshPhrase, vscode.workspace.getConfiguration().get('phrase.timeDelay') * 1000);
 }
 
 module.exports = {
