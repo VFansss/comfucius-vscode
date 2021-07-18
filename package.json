@@ -4,6 +4,10 @@
 	"description": "Fake philosophical quotes generator to inspire you while you create fantastic pieces of software (ITALIAN LANGUAGE)",
 	"publisher": "VFansss",
 	"license": "SEE LICENSE IN LICENCE",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/VFansss/comfucius-vscode.git"
+	},
 	"version": "0.9.1",
 	"engines": {
 		"vscode": "^1.58.0"
