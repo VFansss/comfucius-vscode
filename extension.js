@@ -8,6 +8,12 @@ var stopRefresh;
 var phrase;
 var thinker;
 
+// Strings used for status bar
+
+const BAR_COLLAPSED = `$(ruby) Click for Comfucius`;
+const BAR_LOADING = `$(ruby) Loading... `;
+const BAR_ERROR = `$(ruby) No quotes ಥ_ಥ `;
+
 /**
  * @param {vscode.ExtensionContext} context
  */
@@ -18,9 +24,9 @@ function activate(context) {
 	context.subscriptions.push(vscode.commands.registerCommand(toggleVis, () => {
 		hideStatusBar = !hideStatusBar;
 		if (hideStatusBar)
-			myStatusBarItem.text = `$(megaphone)`;
+			myStatusBarItem.text = BAR_COLLAPSED;
 			else
-			myStatusBarItem.text = `$(megaphone) Loading...`;
+			myStatusBarItem.text = BAR_LOADING;
 	}));
 	myStatusBarItem.command = toggleVis;
 
@@ -46,7 +52,7 @@ async function ShowPharse(data){
 		phrase = data.Phrase;
 		thinker = data.Thinker;
 		if (hideStatusBar)
-			myStatusBarItem.text = `$(megaphone)`;
+			myStatusBarItem.text = BAR_COLLAPSED;
 		else
 			myStatusBarItem.text = `$(megaphone) ${phrase}`;
 		var textLength = phrase.length;
@@ -55,7 +61,7 @@ async function ShowPharse(data){
 			textLength--;
 			phrase = phrase.substring(1);
 			if (hideStatusBar)
-				myStatusBarItem.text = `$(megaphone)`;
+				myStatusBarItem.text = BAR_COLLAPSED;
 			else
 				myStatusBarItem.text = `$(megaphone) ${phrase}`;
 			await new Promise(r => setTimeout(r, vscode.workspace.getConfiguration().get('phrase.scrollPerCharacter') * 1000));
@@ -63,15 +69,15 @@ async function ShowPharse(data){
 		
 		await new Promise(r => setTimeout(r, 1500));
 		if (hideStatusBar)
-			myStatusBarItem.text = `$(megaphone)`;
+			myStatusBarItem.text = BAR_COLLAPSED;
 		else
 			myStatusBarItem.text = `$(megaphone) ~ by ${thinker}`;
 	}
 	else{
 		if (hideStatusBar)
-			myStatusBarItem.text = `$(megaphone)`;
+			myStatusBarItem.text = BAR_COLLAPSED;
 		else
-			myStatusBarItem.text = `ಥ_ಥ`;
+			myStatusBarItem.text = BAR_ERROR;
 		await new Promise(r => setTimeout(r, 10000));
 	}	
 	setTimeout(RefreshPhrase, vscode.workspace.getConfiguration().get('phrase.timeDelay') * 1000);
