@@ -4,7 +4,11 @@
 	"description": "Fake philosophical quotes generator to inspire you while you create fantastic pieces of software (ITALIAN LANGUAGE)",
 	"publisher": "VFansss",
 	"license": "SEE LICENSE IN LICENCE",
-	"version": "0.9.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/VFansss/comfucius-vscode.git"
+	},
+	"version": "0.9.1",
 	"engines": {
 		"vscode": "^1.58.0"
 	},
@@ -12,37 +16,35 @@
 		"Education",
 		"Other"
 	],
+	"icon": "images/icon.png",
 	"activationEvents": [
 		"*"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
-			{
-				"command": "phrase.startRun",
-				"title": "Activate phrase runner"
-			}
+
 		],
 		"configuration": {
-			"title": "Status Bar Phrase",
+			"title": "Comfucius",
 			"properties": {
-				"phrase.timeDelay": {
+				"comfucius.timeDelay": {
 					"type": "number",
 					"scope": "application",
-					"default": 10,
-					"description": "Timer before restarting the status bar phrase message in seconds."
+					"default": 2,
+					"description": "Time (in seconds) before retrieving showing the phrase again"
 				},
-				"phrase.startScrollDelay": {
+				"comfucius.startScrollDelay": {
 					"type": "number",
 					"scope": "application",
 					"default": 5,
-					"description": "How long of delay before scroll in seconds."
+					"description": "How long to wait (in seconds) before starting scrolling the phrase on the status bar"
 				},
-				"phrase.scrollPerCharacter": {
+				"comfucius.scrollPerCharacter": {
 					"type": "number",
 					"scope": "application",
-					"default": 0.1,
-					"description": "How long of delay per character at text scroll in seconds."
+					"default": 0.2,
+					"description": "Delay used for 'trimming' the phrase on the status bar when scrolling the text"
 				}
 			}
 		}
