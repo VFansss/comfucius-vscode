@@ -12,6 +12,7 @@
 		"Education",
 		"Other"
 	],
+	"icon": "images/icon.png",
 	"activationEvents": [
 		"*"
 	],
