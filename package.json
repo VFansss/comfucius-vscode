@@ -19,30 +19,36 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "phrase.startRun",
-				"title": "Activate phrase runner"
+				"command": "comfucius.startRun",
+				"title": "Activate Comfucius phrases retrieval"
 			}
 		],
 		"configuration": {
-			"title": "Status Bar Phrase",
+			"title": "Comfucius",
 			"properties": {
+				"phrase.cacheTtl": {
+					"type": "number",
+					"scope": "application",
+					"default": 10920,
+					"description": "Time (in seconds) before retrieving another quote from Comfucius API"
+				},
 				"phrase.timeDelay": {
 					"type": "number",
 					"scope": "application",
-					"default": 10,
-					"description": "Timer before restarting the status bar phrase message in seconds."
+					"default": 2,
+					"description": "Time (in seconds) before retrieving showing the phrase again"
 				},
 				"phrase.startScrollDelay": {
 					"type": "number",
 					"scope": "application",
 					"default": 5,
-					"description": "How long of delay before scroll in seconds."
+					"description": "How long to wait (in seconds) before starting scrolling the phrase on the status bar"
 				},
 				"phrase.scrollPerCharacter": {
 					"type": "number",
 					"scope": "application",
-					"default": 0.1,
-					"description": "How long of delay per character at text scroll in seconds."
+					"default": 0.2,
+					"description": "Delay used for 'trimming' the phrase on the status bar when scrolling the text"
 				}
 			}
 		}
