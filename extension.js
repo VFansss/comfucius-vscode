@@ -8,6 +8,9 @@ var stopRefresh;
 var phrase;
 var thinker;
 
+// Used to retain a cache instead of calling the web API often
+var cachedData;
+
 // Strings used for status bar
 
 const BAR_COLLAPSED = `$(ruby) Click for Comfucius`;
@@ -38,16 +41,36 @@ function activate(context) {
 function deactivate() {}
 
 function RefreshPhrase(){
-	// @ts-ignore
-	fetch('https://comfucius.xyz/quotes/api/get-fake-quote')
-	.then(response => response.json())
-	.then(data => 
-		{
-			ShowPharse(data);	
+
+	if(cachedData){
+
+		// Pass cloned object to avoid cache clearing while parsing the phrase
+		ShowPharse({...cachedData});
+
+	}
+	else{
+
+		// @ts-ignore
+		fetch('https://comfucius.xyz/quotes/api/get-fake-quote')
+		.then(response => response.json())
+		.then(dataFromApi => {
+
+			// Save inside cache data I've retrieved from API...
+			cachedData = dataFromApi;
+
+			// ...but also dischange it after a certain amount of time
+			setTimeout(()=>{ cachedData = null }, vscode.workspace.getConfiguration().get('phrase.cacheTtl') * 1000);
+			
+			ShowPharse(cachedData);	
+
 		});
+	
+	}
+
 }
 
 async function ShowPharse(data){
+	
 	if (data != null){
 
 		// Build the fake quote from the input data
