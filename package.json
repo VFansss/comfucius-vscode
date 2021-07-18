@@ -26,25 +26,25 @@
 		"configuration": {
 			"title": "Comfucius",
 			"properties": {
-				"phrase.cacheTtl": {
+				"comfucius.cacheTtl": {
 					"type": "number",
 					"scope": "application",
 					"default": 10920,
 					"description": "Time (in seconds) before retrieving another quote from Comfucius API"
 				},
-				"phrase.timeDelay": {
+				"comfucius.timeDelay": {
 					"type": "number",
 					"scope": "application",
 					"default": 2,
 					"description": "Time (in seconds) before retrieving showing the phrase again"
 				},
-				"phrase.startScrollDelay": {
+				"comfucius.startScrollDelay": {
 					"type": "number",
 					"scope": "application",
 					"default": 5,
 					"description": "How long to wait (in seconds) before starting scrolling the phrase on the status bar"
 				},
-				"phrase.scrollPerCharacter": {
+				"comfucius.scrollPerCharacter": {
 					"type": "number",
 					"scope": "application",
 					"default": 0.2,

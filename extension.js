@@ -20,7 +20,7 @@ const BAR_ERROR = `$(ruby) No quotes ಥ_ಥ `;
 function activate(context) {
 	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
 
-	const toggleVis = 'phrase.toggleVisibility';
+	const toggleVis = 'comfucius.toggleVisibility';
 	context.subscriptions.push(vscode.commands.registerCommand(toggleVis, () => {
 		hideStatusBar = !hideStatusBar;
 		if (hideStatusBar)
@@ -56,7 +56,7 @@ function refreshPhrase(){
 			cachedData = dataFromApi;
 
 			// ...but also dischange it after a certain amount of time
-			setTimeout(()=>{ cachedData = null }, vscode.workspace.getConfiguration().get('phrase.cacheTtl') * 1000);
+			setTimeout(()=>{ cachedData = null }, vscode.workspace.getConfiguration().get('comfucius.cacheTtl') * 1000);
 			
 			showPharse(cachedData);	
 
@@ -80,7 +80,7 @@ async function showPharse(data){
 			myStatusBarItem.text = `$(megaphone) ${fakeQuote}`;
 
 		var textLength = fakeQuote.length;
-		await new Promise(r => setTimeout(r, vscode.workspace.getConfiguration().get('phrase.startScrollDelay') * 1000));
+		await new Promise(r => setTimeout(r, vscode.workspace.getConfiguration().get('comfucius.startScrollDelay') * 1000));
 		while (textLength > 0){
 			textLength--;
 			fakeQuote = fakeQuote.substring(1);
@@ -88,7 +88,7 @@ async function showPharse(data){
 				myStatusBarItem.text = BAR_COLLAPSED;
 			else
 				myStatusBarItem.text = `$(megaphone) ${fakeQuote}`;
-			await new Promise(r => setTimeout(r, vscode.workspace.getConfiguration().get('phrase.scrollPerCharacter') * 1000));
+			await new Promise(r => setTimeout(r, vscode.workspace.getConfiguration().get('comfucius.scrollPerCharacter') * 1000));
 		}
 
 	}
@@ -99,7 +99,7 @@ async function showPharse(data){
 			myStatusBarItem.text = BAR_ERROR;
 		await new Promise(r => setTimeout(r, 10000));
 	}	
-	setTimeout(refreshPhrase, vscode.workspace.getConfiguration().get('phrase.timeDelay') * 1000);
+	setTimeout(refreshPhrase, vscode.workspace.getConfiguration().get('comfucius.timeDelay') * 1000);
 }
 
 module.exports = {
