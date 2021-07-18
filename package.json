@@ -1,0 +1,69 @@
+{
+	"name": "comfucius",
+	"displayName": "Comfucius",
+	"description": "Fake philosophical quotes generator to inspire you while you create fantastic pieces of software (ITALIAN LANGUAGE)",
+	"publisher": "VFansss",
+	"license": "SEE LICENSE IN LICENCE",
+	"version": "0.9.0",
+	"engines": {
+		"vscode": "^1.58.0"
+	},
+	"categories": [
+		"Education",
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "phrase.startRun",
+				"title": "Activate phrase runner"
+			}
+		],
+		"configuration": {
+			"title": "Status Bar Phrase",
+			"properties": {
+				"phrase.timeDelay": {
+					"type": "number",
+					"scope": "application",
+					"default": 10,
+					"description": "Timer before restarting the status bar phrase message in seconds."
+				},
+				"phrase.startScrollDelay": {
+					"type": "number",
+					"scope": "application",
+					"default": 5,
+					"description": "How long of delay before scroll in seconds."
+				},
+				"phrase.scrollPerCharacter": {
+					"type": "number",
+					"scope": "application",
+					"default": 0.1,
+					"description": "How long of delay per character at text scroll in seconds."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.58.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"node-fetch": "^2.6.1"
+	}
+}
