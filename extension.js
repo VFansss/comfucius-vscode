@@ -19,7 +19,10 @@ const BAR_ERROR = `$(ruby) No quotes ಥ_ಥ `;
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
+
+	// -9999 will set a very low priority for status bar ordering, thus making sure
+	// I will be always the "left-anchored" rightmost component
+	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -9999);
 
 	const toggleVis = 'comfucius.toggleVisibility';
 	context.subscriptions.push(vscode.commands.registerCommand(toggleVis, () => {
