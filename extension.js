@@ -1,6 +1,21 @@
 
 const vscode = require('vscode');
 const fetch = require("node-fetch");
+const https = require('https');
+
+/*
+
+I'm forced to use "rejectUnauthorized" because latest electron version
+shipped with VS Code (as 26th of February 2022) is still using node 14, and suffer
+of an hardcoded root certificate issue for let's encrypt
+
+This is the workaround suggested by Microsoft:
+
+https://github.com/microsoft/vscode/issues/136787#issuecomment-969065291
+
+*/
+
+https.globalAgent.options.rejectUnauthorized = false;
 
 var myStatusBarItem;
 var hideStatusBar;
