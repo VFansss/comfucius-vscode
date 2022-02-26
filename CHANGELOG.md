@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Add a workaround for hardcoded root CA in node.js v14
 - Load plugin after vscode startup has been completed
+- Fix issue with plugin licence
 
 ## [0.9.2]
 
